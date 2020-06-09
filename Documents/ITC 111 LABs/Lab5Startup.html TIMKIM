@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<style>
+			body {
+				background-color: pink;
+				}
+				h2{
+					color:blue;
+				}
+		</style>
+	</head>
+	
+	
+	<body>
+		<!--The essay questions listed below
+			<Note
+			
+			1) What is the purpose of the program?
+			The purpose of my program is to play with different features of an array of numbers the user inputs. The on-click events are Add Numbers, Search, sort, and filtering within an array of numbers. Once the user enters in the numbers and is prompted to the different events, they can choose to continue or complete. The program is able to manipulate the data to what the user is looking for.  It will also mutiply all the users number choices by 10. 
+
+
+			2) Why  you successful or not so successful in doing the program?
+			It took me alot longer to work on this lab compared to the other labs. Starting from scratch made me really work on the code more. Once I finished reading throught the rubric and what was expected I typed out my code. Once I finished I thought it was successful however, I soon found out, it was not. I went through w3schools to look up mutiply and mapping functions.
+
+			3) How did you know when you were successful?
+			I knew my program was not successful once I ran it through W3schools. I had to re-read every line of code to see where I went wrong. I referred to old videos and examples to try to guide me through this process. I would edit a line of code and then refer back to w3schools to make sure my edits didn't break my code. Once my buttons workerd in the order I wanted, I knew my program was successful. 
+			
+
+			4) What features of the JavaScript language did you use?
+			I used many featuers of the JavaScript language. We used event handlers, pop-up prompts to guide the user. Input functions, search functions, sorting functions, and filtering functions. Once my program runs, it would be able to tell the user the options they have to edit numbers in an array. I added in a new function I learned on mapping. I used the mapping function to mutiply all the user inputted numbers by 10. 
+
+			4) What features of the CSS language did you use?
+			I used features of CSS language within my program. I entered in the background color and font color at the begining of my program. I didn't implement and in-line CSS because it wasnt necessary. I changed the background to pink and my text to blue. 
+			
+
+			5) How can these language features be useful in future programs?
+			All features we used in this lab will help us in future programs. Being able to manipulate data within an array can help us when we have loads of source data. This can save time as the user can find exactly what they're looking for. 
+			
+		-->
+	
+		<!--
+			Work to do:
+			See the Lab 5 Document under Lab 5 in the Canvas Shell
+		-->
+	
+		<h2>JavaScript Arrays, Search, Sorts, Filter/Map</h2>
+
+		<p id="demo"></p>
+		<p id="demo2"></p>
+		
+
+		<button id = AddInteger onclick ="AddAnInteger()"> Add Number </button>
+		<button id = SortEvent onclick ="SortArray()" disabled> Sort Numbers</button>
+		<button id = SearchEvent onclick ="SearchArray()" disabled> Search Numbers </button>
+		<button id = MultiplyEvent onclick="Multiplyby10()" disabled> Multiply Numbers by 10</button>
+		
+
+
+		<script>
+
+			var Numbers = [];
+			var Continue = "y";
+			var Choice;
+
+			function AddAnInteger (){
+
+				while (Continue == "y"){
+					Choice = window.prompt ("Add a number")
+					Choice = parseInt(Choice);
+					Numbers.push(Choice);
+					
+					Continue = window.prompt ("Enter Y, to add more numbers, N to stop");
+
+				}
+
+			document.getElementById("demo").innerHTML= Numbers;
+			document.getElementById("SortEvent").disabled = false;
+
+			}
+
+			var SortChoice;
+
+            function SortArray(){
+
+                SortChoice = window.prompt("Enter a to sort in Ascending order, enter d for Descending order");
+                SortChoice = SortChoice.toLowerCase();
+
+                if (SortChoice == "a"){
+                   
+                    Numbers.sort(function(a, b){return a-b});
+                }
+                else if (SortChoice == "d"){
+
+                    Numbers.sort(function(a, b){return b-a});
+                }
+                else{
+
+                    window.alert ("Invalid Input");
+
+                }
+			
+			document.getElementById("demo").innerHTML = Numbers;
+			document.getElementById("SearchEvent").disabled = false;
+                
+            }
+
+			var SearchChoice;
+			var index;
+
+			function SearchArray(){
+
+				SearchChoice = window.prompt("Enter a Number you would like to find")
+				SearchChoice = parseInt(SearchChoice);
+
+				index = Numbers.indexOf(SearchChoice);
+
+				if (index == -1){
+
+					document.getElementById("demo2").innerHTML = "Integer: " + SearchChoice + " Does not exist in the array, indexOf value is: " + index;
+					
+				}
+
+				else{
+
+					document.getElementById("demo2").innerHTML = SearchChoice + " Integer was found at indexOf: " + index;
+				}
+
+				document.getElementById("MultiplyEvent").disabled = false;
+
+
+			}
+   			
+
+			function Multiply(Numbers){
+				return Numbers * 10
+			}
+
+			function Multiplyby10(){
+				document.getElementById("demo2").innerHTML = Numbers.map(Multiply);
+			}
+
+		</script>
+	</body>
+</html>
